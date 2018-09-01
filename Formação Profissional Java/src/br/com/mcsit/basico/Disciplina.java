@@ -1,7 +1,7 @@
 package br.com.mcsit.basico;
 
 public class Disciplina {
-	private int codigo;
+	private Integer codigo;
 	private String nome;
 	private String descricao;
 	
@@ -10,7 +10,7 @@ public class Disciplina {
 	public int getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 	public String getNome() {

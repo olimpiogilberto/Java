@@ -34,7 +34,6 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 	private JButton botao_alterar = new JButton("Alterar");
 	private JButton botao_excluir = new JButton("Excluir");
 	
-	
 	public ProfessorView(){
 		janela.setLayout(new GridLayout(6, 1));
 		
@@ -43,7 +42,7 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 		
 		if(disciplinas != null){
 		  for (Disciplina d : disciplinas){
-			  combo_disciplinas.addItem(d.getNome()); 
+			  combo_disciplinas.addItem(d.getCodigo()); 
 		  }	
 			
 		}
@@ -120,7 +119,7 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 		p.setRgf(Integer.parseInt(text_rgf.getText()));
 		p.setCpf(Long.parseLong(text_cpf.getText()));
 		p.setNome(text_nome.getText());
-		p.setDisciplina(combo_disciplinas.getSelectedItem().toString());
+		p.getDisciplina().setCodigo(Integer.parseInt(String.valueOf(combo_disciplinas.getSelectedItem())));
 		p.getEndereco().setCep(Long.parseLong(text_cep.getText()));
 		p.getEndereco().setRua(text_rua.getText());
 		p.getEndereco().setBairro(text_bairro.getText());

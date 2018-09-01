@@ -4,8 +4,8 @@ import javax.swing.JOptionPane;
 
 public class Exe01 {
 	
-	private String cpf;
-	private String message;
+	private static String cpf;
+	private static String message;
 	
 	public static void main(String args[]) throws Exception{
 		
@@ -17,19 +17,19 @@ public class Exe01 {
 		
 	}
 
-	public String getCpf() {
+	public static String getCpf() {
 		return cpf;
 	}
 
 	public void setCpf(String cpf) {
-		this.cpf = cpf;
+		cpf = cpf;
 	}
 
-	public String getMessage() {
+	public static String getMessage() {
 		return message;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public static void setMessage(String message) {
+		message = message;
 	}
 }

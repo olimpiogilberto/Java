@@ -16,14 +16,14 @@ public class ProfessorDAO {
 	public boolean cadastrar(Professor dados){
 		
 		try{
-			String sql = "INSERT TBProfessor (cpf, nome, rgf, disciplina, cep, rua, bairro)" +
+			String sql = "INSERT TBProfessor (cpf, nome, rgf, co_disciplina, cep, rua, bairro)" +
 					"VALUES (?, ?, ?, ?, ?, ?, ?)";
 					
 			PreparedStatement stm = conexao.prepareStatement(sql);
 			stm.setLong(1, dados.getCpf());
 			stm.setString(2, dados.getNome());
 			stm.setLong(3, dados.getRgf());
-			stm.setString(4, dados.getDisciplina());
+			stm.setInt(4, dados.getDisciplina().getCodigo());
 			stm.setLong(5, dados.getEndereco().getCep());
 			stm.setString(6, dados.getEndereco().getRua());
 			stm.setString(7, dados.getEndereco().getBairro());
@@ -60,7 +60,7 @@ public class ProfessorDAO {
 			stm.setLong(7, dados.getCpf());
 			stm.setString(1, dados.getNome());
 			stm.setLong(2, dados.getRgf());
-			stm.setString(3, dados.getDisciplina());
+			stm.setInt(3, dados.getDisciplina().getCodigo());
 			stm.setLong(4, dados.getEndereco().getCep());
 			stm.setString(5, dados.getEndereco().getRua());
 			stm.setString(6, dados.getEndereco().getBairro());
@@ -109,7 +109,7 @@ public class ProfessorDAO {
 			if(resultado.next()){
 				dados.setCpf(resultado.getLong("CPF"));
 				dados.setNome(resultado.getString("Nome"));
-				dados.setDisciplina(resultado.getString("Disciplina"));
+				dados.getDisciplina().setCodigo(resultado.getInt("Co_Disciplina"));
 				dados.getEndereco().setCep(resultado.getLong("CEP"));
 				dados.getEndereco().setRua(resultado.getString("Rua"));
 				dados.getEndereco().setBairro(resultado.getString("Bairro"));
@@ -145,7 +145,7 @@ public class ProfessorDAO {
 			if(resultado.next()){
 				dados.setNome(resultado.getString("Nome"));
 				dados.setRgf(resultado.getInt("RGF"));
-				dados.setDisciplina(resultado.getString("Disciplina"));
+				dados.getDisciplina().setCodigo(resultado.getInt("Co_Disciplina"));
 				dados.getEndereco().setCep(resultado.getLong("CEP"));
 				dados.getEndereco().setRua(resultado.getString("Rua"));
 				dados.getEndereco().setBairro(resultado.getString("Bairro"));
