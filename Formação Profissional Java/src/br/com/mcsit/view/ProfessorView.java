@@ -42,7 +42,7 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 		
 		if(disciplinas != null){
 		  for (Disciplina d : disciplinas){
-			  combo_disciplinas.addItem(d.getCodigo()); 
+			  combo_disciplinas.addItem(d.getCodigo() + "-" + d.getNome()); 
 		  }	
 			
 		}
@@ -119,7 +119,8 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 		p.setRgf(Integer.parseInt(text_rgf.getText()));
 		p.setCpf(Long.parseLong(text_cpf.getText()));
 		p.setNome(text_nome.getText());
-		p.getDisciplina().setCodigo(Integer.parseInt(String.valueOf(combo_disciplinas.getSelectedItem())));
+		int item = Integer.parseInt(String.valueOf(combo_disciplinas.getSelectedItem()).toString().substring(0,2).trim());
+		p.getDisciplina().setCodigo(item);
 		p.getEndereco().setCep(Long.parseLong(text_cep.getText()));
 		p.getEndereco().setRua(text_rua.getText());
 		p.getEndereco().setBairro(text_bairro.getText());

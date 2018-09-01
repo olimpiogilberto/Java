@@ -53,7 +53,7 @@ public class ProfessorDAO {
 		
 		try{
 			String sql = "UPDATE TBProfessor SET Nome = ?, RGF = ?, "+
-					"disciplina = ?, CEP = ?, Rua = ?, Bairro = ?" +
+					"Co_Disciplina = ?, CEP = ?, Rua = ?, Bairro = ?" +
 					"WHERE CPF = ?";
 					
 			PreparedStatement stm = conexao.prepareStatement(sql);

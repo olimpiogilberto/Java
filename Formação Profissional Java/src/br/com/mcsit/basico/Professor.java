@@ -3,7 +3,7 @@ package br.com.mcsit.basico;
 public class Professor extends Pessoa{
 	
 	private Integer rgf;
-	private Disciplina disciplina;
+	private Disciplina disciplina = new Disciplina();
 	public Integer getRgf() {
 		return rgf;
 	}
