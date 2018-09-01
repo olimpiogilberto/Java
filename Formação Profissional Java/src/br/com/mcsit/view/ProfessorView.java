@@ -179,13 +179,14 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 		if(text_cpf.getText().trim().equals("") && text_rgf.getText().trim().equals("")){
 			JOptionPane.showMessageDialog(janela, "Digite o Registro do Professor ou CPF:");
 			return 0;
-		} else if(text_cpf.getText().trim().equals("")) {
-					text_cpf.setText("0");
-					return 1;
-		}
+		} else {
+			if(text_rgf.getText().trim().equals("")) {
+				return 2;
+			} 
+
+				return 1;
 			
-		return 2;
-	}
+	}}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -194,16 +195,17 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 		
 		if(origem == botao_consultar){
 			Professor p = new Professor();
-				if(validaCamposConsulta() == 1){
+				if(validaCamposConsulta() != 0){
+					if(validaCamposConsulta() == 2){
+						p.setCpf(Long.parseLong(text_cpf.getText()));
+						p = dao.consultarCPF(p); 
+						exibeDados(p);
+					}else {
 					p.setRgf(Integer.parseInt(text_rgf.getText()));
-					p.setCpf(Long.parseLong(text_cpf.getText()));
 					p = dao.consultarRGF(p); 
 					exibeDados(p);
-				}else if(validaCamposConsulta() == 2){ 
-					p.setRgf(Integer.parseInt(text_rgf.getText()));
-					p.setCpf(Long.parseLong(text_cpf.getText()));
-					p = dao.consultarCPF(p); 
-					exibeDados(p);
+					}
+					
 				}
 			
 		} else if(validaCampos()){

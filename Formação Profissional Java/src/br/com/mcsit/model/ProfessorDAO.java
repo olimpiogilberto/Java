@@ -102,7 +102,7 @@ public class ProfessorDAO {
 			String sql = "SELECT * FROM TBProfessor WHERE RGF = ?";
 					
 			PreparedStatement stm = conexao.prepareStatement(sql);
-			stm.setInt(3, dados.getRgf());
+			stm.setInt(1, dados.getRgf());
 						
 			ResultSet resultado = stm.executeQuery();
 			
@@ -124,7 +124,7 @@ public class ProfessorDAO {
 			
 		}
 		catch(SQLException erro){
-			System.out.println("Erro: " + erro);
+			System.out.println("Erro ProfessorDAO.consultarRGF: " + erro);
 			return null; 
 			
 		}
@@ -160,10 +160,20 @@ public class ProfessorDAO {
 			
 		}
 		catch(SQLException erro){
-			System.out.println("Erro: " + erro);
+			System.out.println("Erro ProfessorDAO.consultarCPF: " + erro);
 			return null; 
 			
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 	
