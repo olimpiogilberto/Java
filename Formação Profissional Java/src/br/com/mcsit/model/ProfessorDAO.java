@@ -34,8 +34,18 @@ public class ProfessorDAO {
 			
 		}
 		catch(SQLException erro){
-			System.out.println("Erro: " + erro);
-			return false;
+			if(erro.getErrorCode() == 1146) {
+				System.out.println("Erro na classe ProfessorDAO.cadastrar()\n" 
+						+"MENSAGEM: " +erro.getMessage());
+				return false;
+				} else {
+					System.out.println("Erro na classe ProfessorDAO.cadastrar()\n" 
+							+"SQLCODE : " + erro.getErrorCode()
+							+"\nERRO: " +erro
+							+"\nESTADO: " +erro.getSQLState()
+							+"\nMENSAGEM: " +erro.getMessage());
+				return false;
+				}
 		}
 	}
 
@@ -86,7 +96,43 @@ public class ProfessorDAO {
 		}
 	}	
 	
-	public Professor consultar(Professor dados){
+	public Professor consultarRGF(Professor dados){
+		
+		try{
+			String sql = "SELECT * FROM TBProfessor WHERE RGF = ?";
+					
+			PreparedStatement stm = conexao.prepareStatement(sql);
+			stm.setInt(3, dados.getRgf());
+						
+			ResultSet resultado = stm.executeQuery();
+			
+			if(resultado.next()){
+				dados.setCpf(resultado.getLong("CPF"));
+				dados.setNome(resultado.getString("Nome"));
+				dados.setDisciplina(resultado.getString("Disciplina"));
+				dados.getEndereco().setCep(resultado.getLong("CEP"));
+				dados.getEndereco().setRua(resultado.getString("Rua"));
+				dados.getEndereco().setBairro(resultado.getString("Bairro"));
+				
+				return dados;
+				
+			}else{
+				return null;
+				
+			
+			}
+			
+		}
+		catch(SQLException erro){
+			System.out.println("Erro: " + erro);
+			return null; 
+			
+		}
+		
+	}
+	
+
+	public Professor consultarCPF(Professor dados){
 		
 		try{
 			String sql = "SELECT * FROM TBProfessor WHERE CPF = ?";
@@ -120,7 +166,6 @@ public class ProfessorDAO {
 		}
 		
 	}
-	
 	
 	
 }

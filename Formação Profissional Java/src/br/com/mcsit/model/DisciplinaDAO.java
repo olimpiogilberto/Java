@@ -20,7 +20,7 @@ public class DisciplinaDAO {
 	public List<Disciplina> listAll(){
 		
 		try{
-			String sql = "SELECT * FROM TBDisciplinas ORDER BY codigo";
+			String sql = "SELECT * FROM TBDisciplina ORDER BY idTBDisciplina";
 			
 			PreparedStatement stm = conexao.prepareStatement(sql);
 			ResultSet resultado = stm.executeQuery();
@@ -28,7 +28,7 @@ public class DisciplinaDAO {
 			
 		while (resultado.next()){
 			Disciplina d = new Disciplina();
-			d.setCodigo(resultado.getInt("CODIGO"));
+			d.setCodigo(resultado.getInt("idTBDisciplina"));
 			d.setNome(resultado.getString("NOME"));
 			lista.add(d);
 		}
@@ -44,7 +44,7 @@ public class DisciplinaDAO {
 public List<Disciplina> listAll(int curso){
 		
 		try{
-			String sql = "SELECT * FROM TBDisciplinas WHERE CODIGO = ? ORDER BY codigo ";
+			String sql = "SELECT * FROM TBDisciplina WHERE idTBDisciplina = ? ORDER BY idTBDisciplina ";
 			
 			PreparedStatement stm = conexao.prepareStatement(sql);
 			stm.setInt(1, curso);
@@ -54,7 +54,7 @@ public List<Disciplina> listAll(int curso){
 			
 		while (resultado.next()){
 			Disciplina d = new Disciplina();
-			d.setCodigo(resultado.getInt("CODIGO"));
+			d.setCodigo(resultado.getInt("idTBDisciplina"));
 			d.setNome(resultado.getString("NOME"));
 			d.setDescricao(resultado.getString("DESCRICAO"));
 			lista.add(d);
@@ -70,7 +70,7 @@ public List<Disciplina> listAll(int curso){
 //---------CADASTRAR DISCIPLINAS------------------
 public boolean cadastrar(Disciplina dados) {
 	try{
-		String sql = "INSERT TBDisciplinas (codigo, nome, descricao)" +
+		String sql = "INSERT TBDisciplina (idTBDisciplina, nome, descricao)" +
 				"VALUES (?, ?, ?)";
 				
 		PreparedStatement stm = conexao.prepareStatement(sql);
@@ -94,8 +94,8 @@ public boolean cadastrar(Disciplina dados) {
 //---------ALTERAÇÃO
 public boolean alterar(Disciplina dados){
 try{
-	String sql = "UPDATE TBDisciplinas SET Nome = ?, Descricao = ?" +
-			"WHERE CODIGO = ?";
+	String sql = "UPDATE TBDisciplina SET Nome = ?, Descricao = ?" +
+			"WHERE idTBDisciplina = ?";
 			
 	PreparedStatement stm = conexao.prepareStatement(sql);
 	stm.setInt(3, dados.getCodigo());
@@ -120,7 +120,7 @@ catch(SQLException erro){
 public boolean excluir(Disciplina dados){
 	
 	try{
-		String sql = "DELETE FROM TBDisciplinas WHERE CODIGO = ?";
+		String sql = "DELETE FROM TBDisciplina WHERE idTBDisciplina = ?";
 				
 		PreparedStatement stm = conexao.prepareStatement(sql);
 		stm.setInt(1, dados.getCodigo());
@@ -144,14 +144,14 @@ public boolean excluir(Disciplina dados){
 //---------BUSCAR MAIOR DISCIPLINAS------------------
  public int consultarMax() {
 	try{
-		String sql = "SELECT MAX(CODIGO) as codigo FROM TBDisciplinas";
+		String sql = "SELECT MAX(idTBDisciplina) as idTBDisciplina FROM TBDisciplina";
 			
 		PreparedStatement stm = conexao.prepareStatement(sql);
 							
 		ResultSet resultado = stm.executeQuery();
 		
 		if(resultado.next()){
-			return resultado.getInt("CODIGO");
+			return resultado.getInt("idTBDisciplina");
 						
 		}else{
 			return 0;
@@ -173,7 +173,7 @@ public boolean excluir(Disciplina dados){
  public Disciplina consultar(Disciplina dados) {
 	
 	try{
-		String sql = "SELECT * FROM TBDisciplinas WHERE CODIGO = ? ";
+		String sql = "SELECT * FROM TBDisciplina WHERE idTBDisciplina = ? ";
 		
 		PreparedStatement stm = conexao.prepareStatement(sql);
 		stm.setLong(1, dados.getCodigo());
@@ -193,12 +193,18 @@ public boolean excluir(Disciplina dados){
 	
 }
 catch(SQLException erro){
+	if(erro.getErrorCode() == 1146) {
 	System.out.println("Erro na classe DisciplinaDAO.consultar()\n" 
-			+"SQLCODE : " + erro.getErrorCode()
-			+"\nERRO: " +erro
-			+"\nESTADO: " +erro.getSQLState()
-			+"\nMENSAGEM: " +erro.getMessage());
-	return null; 
+			+"MENSAGEM: " +erro.getMessage());
+	return null;
+	} else {
+		System.out.println("Erro na classe DisciplinaDAO.consultar()\n" 
+				+"SQLCODE : " + erro.getErrorCode()
+				+"\nERRO: " +erro
+				+"\nESTADO: " +erro.getSQLState()
+				+"\nMENSAGEM: " +erro.getMessage());
+		return null;
+	}
 	
 }
 	

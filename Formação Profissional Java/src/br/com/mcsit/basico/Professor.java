@@ -2,12 +2,12 @@ package br.com.mcsit.basico;
 
 public class Professor extends Pessoa{
 	
-	private int rgf;
+	private Integer rgf;
 	private String disciplina;
-	public int getRgf() {
+	public Integer getRgf() {
 		return rgf;
 	}
-	public void setRgf(int rgf) {
+	public void setRgf(Integer rgf) {
 		this.rgf = rgf;
 	}
 	public String getDisciplina() {

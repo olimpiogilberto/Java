@@ -117,7 +117,7 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 
 	public Professor recuperaDados(){
 		Professor p = new Professor();
-		p.setRgf(Integer.parseInt(text_rgf.getText().substring(0, 10)));
+		p.setRgf(Integer.parseInt(text_rgf.getText()));
 		p.setCpf(Long.parseLong(text_cpf.getText()));
 		p.setNome(text_nome.getText());
 		p.setDisciplina(combo_disciplinas.getSelectedItem().toString());
@@ -173,6 +173,19 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 		
 		return true;
 	}
+	
+	public Integer validaCamposConsulta(){
+		
+		if(text_cpf.getText().trim().equals("") && text_rgf.getText().trim().equals("")){
+			JOptionPane.showMessageDialog(janela, "Digite o Registro do Professor ou CPF:");
+			return 0;
+		} else if(text_cpf.getText().trim().equals("")) {
+					text_cpf.setText("0");
+					return 1;
+		}
+			
+		return 2;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -181,11 +194,19 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 		
 		if(origem == botao_consultar){
 			Professor p = new Professor();
-			p.setCpf(Long.parseLong(text_cpf.getText()));
-			p = dao.consultar(p); 
-			exibeDados(p);
-		}
-		else if(validaCampos()){
+				if(validaCamposConsulta() == 1){
+					p.setRgf(Integer.parseInt(text_rgf.getText()));
+					p.setCpf(Long.parseLong(text_cpf.getText()));
+					p = dao.consultarRGF(p); 
+					exibeDados(p);
+				}else if(validaCamposConsulta() == 2){ 
+					p.setRgf(Integer.parseInt(text_rgf.getText()));
+					p.setCpf(Long.parseLong(text_cpf.getText()));
+					p = dao.consultarCPF(p); 
+					exibeDados(p);
+				}
+			
+		} else if(validaCampos()){
 		boolean sucesso = false;
 		
 		if(origem == botao_cadastrar) sucesso = dao.cadastrar(recuperaDados());
