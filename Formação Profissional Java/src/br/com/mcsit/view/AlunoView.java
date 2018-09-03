@@ -5,7 +5,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -20,8 +19,8 @@ import br.com.mcsit.componentes.CustomTextField;
 import br.com.mcsit.model.AlunoDAO;
 
 public class AlunoView implements ActionListener{
-	public int novo = 0;
-	
+	private Integer novo = 0;
+	private Aluno aluno = new Aluno();
 	private JFrame janela = new JFrame("CADASTRO ALUNO");
 	   
 	private JLabel label_ra = new JLabel("RA:        ");
@@ -130,23 +129,21 @@ public class AlunoView implements ActionListener{
 		janela.setResizable(false);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
-		
-	
 	}
 
 	public Aluno recuperaDados(){
-		Aluno p = new Aluno();
-		p.setCpf(Long.parseLong(text_cpf.getText()));
-		p.setRa(Integer.parseInt(text_ra.getText()));
-		p.setNome(text_nome.getText());
-		p.setCurso(check_curso.getSelectedItem().toString());
-		p.getEndereco().setCep(Long.parseLong(text_cep.getText()));
-		p.getEndereco().setRua(text_rua.getText());
-		p.getEndereco().setNumero(Integer.parseInt(text_numero.getText()));
-		p.getEndereco().setComplemento(text_complemento.getText());
-		p.getEndereco().setBairro(text_bairro.getText());
-		p.getEndereco().setCidade(text_cidade.getText());
-		return p;
+		Aluno a = new Aluno();
+		a.setCpf(Long.parseLong(text_cpf.getText()));
+		a.setRa(Integer.parseInt(text_ra.getText()));
+		a.setNome(text_nome.getText());
+		a.getCurso().setCodigo(Integer.parseInt(check_curso.getSelectedItem().toString()));
+		a.getEndereco().setCep(Long.parseLong(text_cep.getText()));
+		a.getEndereco().setRua(text_rua.getText());
+		a.getEndereco().setNumero(Integer.parseInt(text_numero.getText()));
+		a.getEndereco().setComplemento(text_complemento.getText());
+		a.getEndereco().setBairro(text_bairro.getText());
+		a.getEndereco().setCidade(text_cidade.getText());
+		return a;
 	}
 	
 	public void exibeDados(Aluno a){
@@ -164,7 +161,7 @@ public class AlunoView implements ActionListener{
 		
 	}else{
 		limpaDadosInexistentes();
-		JOptionPane.showMessageDialog(janela, "Aluno Inexistente!");
+		JOptionPane.showMessageDialog(janela, aluno.getControle().getMensagem());
 	
 	}
 	}
@@ -223,7 +220,7 @@ public class AlunoView implements ActionListener{
 		
 		return true;
 	}
-	public int ra(){
+	public Integer ra(){
 		AlunoDAO dao = new AlunoDAO();
 		int maximo = dao.consultarMax();
 		return maximo+1;
@@ -238,35 +235,37 @@ public class AlunoView implements ActionListener{
 		
 		if(origem == botao_consultar){
 			if(validaCamposConsulta()){
-			Aluno a = new Aluno();
 			
 			if(text_ra.getText().trim().equals("")){
-				a.setCpf(Long.parseLong(text_cpf.getText()));
-				a = dao.consultarCpf(a);  
+				aluno.setCpf(Long.parseLong(text_cpf.getText()));
+				aluno = dao.consultarCpf(aluno);  
 			}else{
-				a.setRa(Integer.parseInt(text_ra.getText()));
-				a = dao.consultar(a);
+				aluno.setRa(Integer.parseInt(text_ra.getText()));
+				aluno = dao.consultar(aluno);
+				if(aluno == null) {
+					
+				aluno.getControle().setMensagem("Erro de acesso ao Banco de Dados!");	
+				}
 			}	
 		
 			
-			exibeDados(a);
+			exibeDados(aluno);
 			}
 		}
 		else if(validaCampos()){
 		boolean sucesso = false;
-		
 		if(origem == botao_cadastrar) sucesso = dao.cadastrar(recuperaDados());
 			else if(origem == botao_alterar) sucesso = dao.alterar(recuperaDados()); 
 				else if(origem == botao_excluir) sucesso = dao.excluir(recuperaDados()); 
 					
 			if(sucesso){
-				JOptionPane.showMessageDialog(janela, "Operação realizada com Sucesso");
+				JOptionPane.showMessageDialog(janela, aluno.getControle().mensagem);
 				limpaDados();
 				check_curso.setSelectedItem(0);
 				novo = ra();
 				text_ra.setText("" + novo);
 			}
-			else JOptionPane.showMessageDialog(janela, "Erro na Operação" );	
+			else JOptionPane.showMessageDialog(janela,aluno.getControle().mensagem );	
 					
 		}
 	}
@@ -303,6 +302,4 @@ public class AlunoView implements ActionListener{
 		this.text_complemento = text_complemento;
 	}
 
-	//------------------------------------------
-	
 }

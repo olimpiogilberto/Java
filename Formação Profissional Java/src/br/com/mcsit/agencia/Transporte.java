@@ -20,7 +20,6 @@ public class Transporte implements ICalculos {
 	
 	@Override
 	public float calculaPreco() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

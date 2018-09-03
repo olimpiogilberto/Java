@@ -13,7 +13,6 @@ public class Navio extends Transporte{
 	
 	@Override
 	public float calculaPreco() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

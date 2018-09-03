@@ -14,13 +14,11 @@ public class Passagem implements IVendas{
 
 	@Override
 	public boolean validaGrupos() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean compraPassagem() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

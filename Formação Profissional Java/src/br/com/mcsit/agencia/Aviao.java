@@ -13,7 +13,6 @@ public class Aviao extends Transporte{
 	
 	@Override
 	public float calculaPreco() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

@@ -22,7 +22,7 @@ public class AlunoDAO {
 			stm.setLong(1, dados.getCpf());
 			stm.setLong(2, dados.getRa());
 			stm.setString(3, dados.getNome());
-			stm.setString(4, dados.getCurso());
+			stm.setInt(4, dados.getCurso().getCodigo());
 			stm.setLong(5, dados.getEndereco().getCep());
 			stm.setString(6, dados.getEndereco().getRua());
 			stm.setLong(7, dados.getEndereco().getNumero());
@@ -37,14 +37,14 @@ public class AlunoDAO {
 		catch(SQLException erro){
 			if(erro.getErrorCode()== 1054){
 			System.out.println("AlunoDAO.SQLCODE : " + erro.getErrorCode()
-					+"\nERRO: " +erro
+					+"\nERRO1 : " +erro
 					+"\nESTADO: " +erro.getSQLState()
 					+"\nMENSAGEM: " +erro.getMessage()
 			        +"\nCOLUNA DESCONHECIDA");
 			return false;
 			}else{
 			System.out.println("AlunoDAO.SQLCODE : " + erro.getErrorCode()
-					+"\nERRO: " +erro
+					+"\nERRO2 : " +erro
 					+"\nESTADO: " +erro.getSQLState()
 					+"\nMENSAGEM: " +erro.getMessage());
 			return false;
@@ -64,7 +64,7 @@ public class AlunoDAO {
 			stm.setLong(10, dados.getRa());
 			stm.setString(1, dados.getNome());
 			stm.setLong(2, dados.getCpf());
-			stm.setString(3, dados.getCurso());
+			stm.setInt(3, dados.getCurso().getCodigo());
 			stm.setLong(4, dados.getEndereco().getCep());
 			stm.setString(5, dados.getEndereco().getRua());
 			stm.setInt(6, dados.getEndereco().getNumero());
@@ -79,7 +79,7 @@ public class AlunoDAO {
 		}
 		catch(SQLException erro){
 			System.out.println("SQLCODE : " + erro.getErrorCode()
-					+"\nERRO: " +erro
+					+"\nERRO3 : " +erro
 					+"\nESTADO: " +erro.getSQLState()
 					+"\nMENSAGEM: " +erro.getMessage());
 			return false;
@@ -100,26 +100,23 @@ public class AlunoDAO {
 			
 		}
 		catch(SQLException erro){
-			System.out.println("Erro: " + erro);
+			System.out.println("Erro4: " + erro);
 		    return false;
 			
 		}
 	}	
-	//---------------------------
+
 	public Aluno consultar(Aluno dados){
-		
 		try{
 			String sql = "SELECT * FROM TBAluno WHERE RA = ?";
-					
 			PreparedStatement stm = conexao.prepareStatement(sql);
 			stm.setLong(1, dados.getRa());
-						
 			ResultSet resultado = stm.executeQuery();
 			
 			if(resultado.next()){
 				dados.setCpf(resultado.getLong("CPF"));
 				dados.setNome(resultado.getString("Nome"));
-				dados.setCurso(resultado.getString("CURSO"));
+				dados.getCurso().setCodigo(resultado.getInt("CURSO"));
 				dados.getEndereco().setCep(resultado.getLong("CEP"));
 				dados.getEndereco().setRua(resultado.getString("Rua"));
 				dados.getEndereco().setNumero(resultado.getInt("Numero"));
@@ -130,21 +127,25 @@ public class AlunoDAO {
 				
 			}else{
 				return null;
-			
 			}
-			
 		}
 		catch(SQLException erro){
-			System.out.println("SQLCODE : " + erro.getErrorCode()
-					+"\nERRO: " +erro
-					+"\nESTADO: " +erro.getSQLState()
-					+"\nMENSAGEM: " +erro.getMessage());
-			return null; 
-			
+			if(erro.getErrorCode()== 1146){
+			dados.getControle().setRetorno(erro.getErrorCode());
+			System.out.println("ERRO5.1 - AlunoDAO.consultar()"
+					+"\nMENSAGEM: " +erro.getMessage()
+					+"\nRETORNO: " +dados.getControle().getRetorno()
+			        +"\nA TABELA NÃO EXISTE!");
+			return null;
+			}else{
+			System.out.println("ERRO5.2 - AlunoDAO.consultarMax()"
+						+"\nMENSAGEM: " +erro.getMessage()
+				        +"\nCOLOCAR A MENSAGEM AQUI!");
+			return null;
+		         } 
 		}
-		
 	}
-	//---------------------------
+
 	public Aluno findByRa(Aluno dados){
 	
 	try{
@@ -170,7 +171,7 @@ public class AlunoDAO {
 	}
 	catch(SQLException erro){
 		System.out.println("SQLCODE : " + erro.getErrorCode()
-		+"\nERRO: " +erro
+		+"\nERRO6: " +erro
 		+"\nESTADO: " +erro.getSQLState()
 		+"\nMENSAGEM: " +erro.getMessage());
 return null; 
@@ -178,37 +179,33 @@ return null;
 	}
 	
 }
-	//---------------------------
 	public int consultarMax() {
-		
 		
 		try{
 			String sql = "SELECT MAX(RA) as codigo FROM TBAluno";
-				
 			PreparedStatement stm = conexao.prepareStatement(sql);
-								
 			ResultSet resultado = stm.executeQuery();
 			
 			if(resultado.next()){
 				return resultado.getInt("CODIGO");
-							
-			}else{
-				return 0;
-						
-			}
-			
+			}else{ return 0; }
 		}
 		catch(SQLException erro){
-			System.out.println("SQLCODE : " + erro.getErrorCode()
-					+"\nERRO: " +erro
-					+"\nESTADO: " +erro.getSQLState()
-					+"\nMENSAGEM: " +erro.getMessage());
-			return 0; 
-			
+			if(erro.getErrorCode()== 1146){
+			System.out.println("ERRO7.1 - AlunoDAO.consultarMax()"
+					+"\nMENSAGEM: " +erro.getMessage()
+			        +"\nA TABELA NÃO EXISTE!");
+			return 0;
+			}else{
+			System.out.println("ERRO7.2 - AlunoDAO.consultarMax()"
+						+"\nMENSAGEM: " +erro.getMessage()
+				        +"\nCOLOCAR A MENSAGEM AQUI!");
+			return 0;
+		         }
 		}
-		
 	}
-	//---------------------------
+
+
 	public int consultarMin() {
 		
 		
@@ -230,7 +227,7 @@ return null;
 		}
 		catch(SQLException erro){
 			System.out.println("SQLCODE : " + erro.getErrorCode()
-					+"\nERRO: " +erro
+					+"\nERRO8: " +erro
 					+"\nESTADO: " +erro.getSQLState()
 					+"\nMENSAGEM: " +erro.getMessage());
 			return 0; 
@@ -251,7 +248,7 @@ return null;
 			if(resultado.next()){
 				dados.setRa(resultado.getInt("RA"));
 				dados.setNome(resultado.getString("Nome"));
-				dados.setCurso(resultado.getString("CURSO"));
+				dados.getCurso().setCodigo(resultado.getInt("CURSO"));
 				dados.getEndereco().setCep(resultado.getLong("CEP"));
 				dados.getEndereco().setRua(resultado.getString("Rua"));
 				dados.getEndereco().setBairro(resultado.getString("Bairro"));
@@ -267,7 +264,7 @@ return null;
 		}
 		catch(SQLException erro){
 			System.out.println("SQLCODE : " + erro.getErrorCode()
-					+"\nERRO: " +erro
+					+"\nERRO9: " +erro
 					+"\nESTADO: " +erro.getSQLState()
 					+"\nMENSAGEM: " +erro.getMessage());
 			return null; 

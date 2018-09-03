@@ -1,12 +1,12 @@
 package br.com.mcsit.basico;
 
 public class Curso {
-private int codigo;
-private String nome;
-public int getCodigo() {
+private Integer codigo = 0;
+private String nome = null;
+public Integer getCodigo() {
 	return codigo;
 }
-public void setCodigo(int codigo) {
+public void setCodigo(Integer codigo) {
 	this.codigo = codigo;
 }
 public String getNome() {

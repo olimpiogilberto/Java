@@ -5,8 +5,8 @@ import br.com.mcsit.basico.Curso;
 
 public class Matricula extends Aluno{
 	private Aluno aluno = new Aluno();
-	private Disciplina disciplina;
-	private Curso curso;
+	private Disciplina disciplina = new Disciplina();
+	private Curso curso = new Curso();
 	
 	public Matricula() {
 		this.aluno = new Aluno();
@@ -26,7 +26,7 @@ public class Matricula extends Aluno{
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
-	public String getCurso() {
+	public Curso getCurso() {
 		return curso;
 	}
 	public void setCurso(Curso curso) {

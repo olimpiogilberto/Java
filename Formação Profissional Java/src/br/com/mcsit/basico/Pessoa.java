@@ -3,10 +3,11 @@ package br.com.mcsit.basico;
 import br.com.mcsit.basico.Endereco;
 
 public class Pessoa{
-	private long cpf;
-	private String nome;
+
+	private long cpf = 0;
+	private String nome = null;
 	private Endereco endereco = new Endereco();
-	
+
 	public long getCpf() {
 		return cpf;
 	}
@@ -25,6 +26,4 @@ public class Pessoa{
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-
-	
 }

@@ -1,12 +1,12 @@
 package br.com.mcsit.basico;
 
 public class Endereco {
-	private long cep;
-	private String rua;
-	private int numero;
-	private String complemento;
-	private String bairro;
-	private String cidade;
+	private long cep = 0;
+	private String rua = null;
+	private Integer numero = 0;
+	private String complemento = null;
+	private String bairro = null;
+	private String cidade = null;
 	public long getCep() {
 		return cep;
 	}
@@ -19,10 +19,10 @@ public class Endereco {
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
-	public int getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 	public String getComplemento() {
@@ -43,5 +43,4 @@ public class Endereco {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
-
 }

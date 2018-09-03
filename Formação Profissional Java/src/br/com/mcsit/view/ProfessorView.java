@@ -243,7 +243,6 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -256,8 +255,6 @@ public class ProfessorView implements ActionListener, FocusListener, KeyListener
 	@Override
 	public void keyTyped(KeyEvent e) {
 		
-
-		// TODO Auto-generated method stub	
 	}
 	
 
