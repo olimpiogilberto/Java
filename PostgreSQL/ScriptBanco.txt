@@ -1,0 +1,65 @@
+﻿CREATE SCHEMA dbmcs001 AUTHORIZATION postgres;
+
+  CREATE TABLE dbmcs001.tbusuario
+(
+  codigo integer NOT NULL,
+  nome character varying(100) NOT NULL DEFAULT ''::character varying,
+  login character varying(100) NOT NULL DEFAULT ''::character varying,
+  senha character varying(100) NOT NULL DEFAULT ''::character varying,
+  situacao integer NOT NULL,
+  CONSTRAINT tbusuario_pkey PRIMARY KEY (codigo)
+)
+WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE dbmcs001.tbpermissao
+(
+  codigo integer NOT NULL,
+  codusuario integer NOT NULL,
+  permissao character varying(100) NOT NULL DEFAULT ''::character varying,
+  CONSTRAINT tbpermissao_pkey PRIMARY KEY (codigo, permissao),
+  CONSTRAINT tbpermissao_fkey FOREIGN KEY (codusuario)
+      REFERENCES dbmcs001.tbusuario (codigo) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+
+
+
+INSERT INTO dbmcs001.TBUsuario VALUES (1,'Administrador','admin','admin',1);
+INSERT INTO dbmcs001.TBUsuario VALUES (2,'Gilberto','c129427','Guima10',1);
+
+
+
+INSERT INTO dbmcs001.TBPermissao VALUES (1,1,'ROLE_ADMINISTRADOR');
+INSERT INTO dbmcs001.TBPermissao VALUES (2,1,'ROLE_USUARIO');
+INSERT INTO dbmcs001.TBPermissao VALUES (3,2,'ROLE_USUARIO');
+
+CREATE TABLE dbmcs001.D02TBP11_ACAOTRNSO (
+   NU_ACAO_TRANSACAO    INT                 NOT NULL,
+   NO_ACAO_TRANSACAO    VARCHAR(40)          NOT NULL,
+   DE_ACAO_TRANSACAO    CHAR(100)            NULL
+);
+
+
+-- set table ownership
+alter table dbmcs001.D02TBP11_ACAOTRNSO owner to postgres
+;
+ALTER TABLE dbmcs001.D02TBP11_ACAOTRNSO
+   ADD CONSTRAINT D02PKP11 PRIMARY KEY (NU_ACAO_TRANSACAO);
+   
+CREATE SEQUENCE dbmcs001."D02SQP11"
+   INCREMENT 1
+   START 1
+   MINVALUE 1
+   MAXVALUE 99999999999999
+   CACHE 10000;
+ALTER SEQUENCE dbmcs001."D02SQP11"
+  OWNER TO postgres;
+  
+INSERT INTO dbmcs001.D02TBP11_ACAOTRNSO VALUES (1,'LANCAR');
+INSERT INTO dbmcs001.D02TBP11_ACAOTRNSO VALUES (2,'AGENDAR');
+INSERT INTO dbmcs001.D02TBP11_ACAOTRNSO VALUES (3,'CANCELAR');
