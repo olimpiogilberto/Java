@@ -1,5 +1,4 @@
 package br.com.mcs.view;
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import br.com.mcs.beans.Pessoa;
 import br.com.mcs.model.EnderecoDAO;
@@ -72,7 +72,7 @@ public class PessoaView implements ActionListener {
 			b4.addActionListener(this);
 			
 	        janela.pack();
-			janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			janela.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			janela.setResizable(false);
 			janela.setLocationRelativeTo(null);
 			janela.setVisible(true);
@@ -180,11 +180,11 @@ public class PessoaView implements ActionListener {
 				sucesso = daoEndereco.excluir(cpf);
 			}
 			if (sucesso){
-				JOptionPane.showMessageDialog(janela, "Operação realizada com Sucesso!");
+				JOptionPane.showMessageDialog(janela, "Operaï¿½ï¿½o realizada com Sucesso!");
 				limpaDados();
 				}
 				
-			else JOptionPane.showMessageDialog(janela, "Erro na operação");
+			else JOptionPane.showMessageDialog(janela, "Erro na operaï¿½ï¿½o");
 			}
 		
 		}

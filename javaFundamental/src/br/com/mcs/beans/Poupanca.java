@@ -27,18 +27,20 @@ public class Poupanca extends Conta{
 		
 		this.aniversario = aniversario;
 	}
+	@Override
 	public String imprime(){
-		return "Aniversário: "+ this.aniversario + 
+		return "Aniversï¿½rio: "+ this.aniversario + 
 		        "\n" + super.imprime();
 		}	
+	@Override
 	public String imprimeCerto(){
 		return "Titular:" + super.getTitular().getNome() +
 				"\nCPF:" + super.getTitular().getCpf()+
 				"\n ------ CONTA  ---------" +
-		        "\nAgência: "+ super.getAgencia()+
+		        "\nAgï¿½ncia: "+ super.getAgencia()+
 		         "\nConta: "+ super.getNumero()+ "-"+ this.getDigito()+
 		           "\nSaldo: "+ super.getSaldo() + 
-		           "\nRemuneração: " + this.getAniversario()+
+		           "\nRemuneraï¿½ï¿½o: " + this.getAniversario()+
 		           "\n ------ ENDERECO  ---------" +
 		           "\n" + super.getTitular().getLogradouro().imprime();
 		}	

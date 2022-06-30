@@ -5,7 +5,7 @@ public class Aluno extends Pessoa{
 //ATRIBUTOS
 private Integer ra;
 
-//CONSTRUTOR PADRÃO
+//CONSTRUTOR PADRï¿½O
 public Aluno() {
 	
 }
@@ -22,6 +22,7 @@ public Aluno(Integer ra, Pessoa pessoa) {
 	this.ra = ra;
 }
 
+@Override
 public String imprime(){//SOBRESCRITA
 return "RA: "+ this.getRa()+ 
 	 "\n" + super.imprime();

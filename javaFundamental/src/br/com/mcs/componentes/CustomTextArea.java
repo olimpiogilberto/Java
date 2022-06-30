@@ -43,6 +43,7 @@ public class CustomTextArea extends JTextArea implements FocusListener, KeyListe
 			this.setText(this.getText().toUpperCase());
 		}
 
+		@Override
 		public void focusGained(FocusEvent e) {
 			this.setBackground(cores[0]);
 			this.setForeground(cores[1]);

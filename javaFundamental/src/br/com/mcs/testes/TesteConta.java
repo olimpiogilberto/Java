@@ -3,7 +3,6 @@
  */
 package br.com.mcs.testes;
 
-import br.com.mcs.beans.Aluno;
 import br.com.mcs.beans.Conta;
 import br.com.mcs.beans.Endereco;
 import br.com.mcs.beans.Pessoa;

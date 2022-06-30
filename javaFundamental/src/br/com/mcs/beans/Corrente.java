@@ -19,15 +19,17 @@ public class Corrente extends Conta{
 		this.limite = limite;
 	}
 	
+	@Override
 	public String imprime(){
 		return "Limite: "+ this.limite + 
 		        "\n" + super.imprime();
 		}	
+	@Override
 	public String imprimeCerto(){
 		return "Titular:" + super.getTitular().getNome() +
 				"\nCPF:" + super.getTitular().getCpf()+
 				"\n ------ CONTA  ---------" +
-		        "\nAgência: "+ super.getAgencia()+
+		        "\nAgï¿½ncia: "+ super.getAgencia()+
 		         "\nConta: "+ super.getNumero()+ "-"+ this.getDigito()+
 		           "\nSaldo: "+ super.getSaldo() + 
 		           "\nLimite: " + this.getLimite()+

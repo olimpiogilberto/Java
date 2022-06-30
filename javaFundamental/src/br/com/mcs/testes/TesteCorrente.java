@@ -7,7 +7,6 @@ import br.com.mcs.beans.Conta;
 import br.com.mcs.beans.Corrente;
 import br.com.mcs.beans.Endereco;
 import br.com.mcs.beans.Pessoa;
-import br.com.mcs.beans.Poupanca;
 
 /**
  * @author Gilberto

@@ -21,7 +21,7 @@ public class AlunoView implements ActionListener{
 	private JLabel lEndereco = new JLabel("ENDERECO:   ");
 	private JLabel lCep = new JLabel("CEP:   ");
 	private JLabel lRua = new JLabel("RUA:      ");
-	private JLabel lNumero = new JLabel("Nº:      ");
+	private JLabel lNumero = new JLabel("Nï¿½:      ");
 
 	private JButton bCadastrar = new JButton("Cadastrar");
 	private JButton bConsultar = new JButton("Consultar");
@@ -88,7 +88,7 @@ public class AlunoView implements ActionListener{
 				
 		//janela.setSize(400, 400);
 		janela.pack();
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		janela.setResizable(false);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);

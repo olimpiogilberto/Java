@@ -1,7 +1,5 @@
 package br.com.mcs.testes;
 
-import javax.swing.JOptionPane;
-
 import br.com.mcs.beans.*;
 
 public class TesteHorario {
@@ -13,6 +11,6 @@ public class TesteHorario {
 		
 		//JOptionPane.showMessageDialog(null,data.imprime());
 
-}//Fim do método main
+}//Fim do mï¿½todo main
 
 }

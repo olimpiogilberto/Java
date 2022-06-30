@@ -11,9 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 import br.com.mcs.beans.Funcionario;
-import br.com.mcs.beans.Pessoa;
 import br.com.mcs.model.FuncionarioDAO;
 
 public class FuncionarioView implements ActionListener{
@@ -22,7 +22,7 @@ public class FuncionarioView implements ActionListener{
 	private JLabel lRegistro = new JLabel("Registro:        ");
 	private JLabel lNome = new JLabel("Nome:  ");
 	private JLabel lDepartamento = new JLabel("Departamento:      ");
-	private JLabel lFuncao= new JLabel("Função:   ");
+	private JLabel lFuncao= new JLabel("Funï¿½ï¿½o:   ");
 	
 	private JButton bConsultar = new JButton("Consultar");
 	private JButton bSalvar = new JButton("Salvar");
@@ -76,7 +76,7 @@ public class FuncionarioView implements ActionListener{
 				
 		//janela.setSize(400, 400);
 		janela.pack();
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		janela.setResizable(false);
 		janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
@@ -84,6 +84,7 @@ public class FuncionarioView implements ActionListener{
 	}
 
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton origem = (JButton) e.getSource();
 		FuncionarioDAO DAOfuncionario = new FuncionarioDAO();
@@ -100,9 +101,9 @@ public class FuncionarioView implements ActionListener{
 			Integer total = DAOfuncionario.excluir(func);
 			
 			if(total > 0){
-				JOptionPane.showMessageDialog(janela, "Operação realizada com Sucesso!");
+				JOptionPane.showMessageDialog(janela, "Operaï¿½ï¿½o realizada com Sucesso!");
 			}else {
-				JOptionPane.showMessageDialog(janela, "Não foi possível efetuar a operação!");
+				JOptionPane.showMessageDialog(janela, "Nï¿½o foi possï¿½vel efetuar a operaï¿½ï¿½o!");
 			}//fim do segundo if
 			
 		}else if (origem == bSalvar){
@@ -123,9 +124,9 @@ public class FuncionarioView implements ActionListener{
 	
 			}
 			if(total > 0){
-				JOptionPane.showMessageDialog(janela, "Operação realizada com Sucesso!");
+				JOptionPane.showMessageDialog(janela, "Operaï¿½ï¿½o realizada com Sucesso!");
 			}else {
-				JOptionPane.showMessageDialog(janela, "Não foi possível efetuar a operação!");
+				JOptionPane.showMessageDialog(janela, "Nï¿½o foi possï¿½vel efetuar a operaï¿½ï¿½o!");
 			}//fim do segundo if
 		}else if(origem == bSair) {
 			System.exit(0);
@@ -135,7 +136,7 @@ public class FuncionarioView implements ActionListener{
 	
 	public boolean validaCampos() {
 		if (tRegistro.getText().trim().equals("")) {
-			JOptionPane.showMessageDialog(janela, "Para cadastrar digite o Código do Resgistro");
+			JOptionPane.showMessageDialog(janela, "Para cadastrar digite o Cï¿½digo do Resgistro");
 			return false;
 		}
 

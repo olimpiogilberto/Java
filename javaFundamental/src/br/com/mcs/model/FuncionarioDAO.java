@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.mcs.beans.Funcionario;
-import br.com.mcs.beans.Pessoa;
 
 public class FuncionarioDAO {
 	private Connection conexao;
@@ -33,19 +32,19 @@ public class FuncionarioDAO {
 		} catch (SQLException erro) {
 			if(erro.getErrorCode() == 1049){
 				System.out.println("ERRO: " + erro +
-								   "\nBANCO NÃO CADASTRADO: ");
+								   "\nBANCO Nï¿½O CADASTRADO: ");
 				return null;	
 			}else if(erro.getErrorCode() == 1146){
 				
 				System.out.println("ERRO: " + erro +
-								   "\nTABELA NÃO EXISTE: ");
+								   "\nTABELA Nï¿½O EXISTE: ");
 				return null;	
 			}else if(erro.getErrorCode() == 1062){
 				System.out.println("ERRO NA CLASSE:" + this
 						+"\nSQLCODE : " + erro.getErrorCode()
 						+"\nERRO: " +erro
 						+"\nESTADO: " +erro.getSQLState()
-						+"\n REGISTRO JÁ CADASTRADO" 
+						+"\n REGISTRO Jï¿½ CADASTRADO" 
 						+"\nMENSAGEM: " +erro.getMessage());
 				return 100;
 			}else{
@@ -77,12 +76,12 @@ public class FuncionarioDAO {
 		} catch (SQLException erro) {
 			if(erro.getErrorCode() == 1049){
 				System.out.println("ERRO: " + erro +
-								   "\nBANCO NÃO CADASTRADO: ");
+								   "\nBANCO Nï¿½O CADASTRADO: ");
 				return null;	
 			}else if(erro.getErrorCode() == 1146){
 				
 				System.out.println("ERRO: " + erro +
-								   "\nTABELA NÃO EXISTE: ");
+								   "\nTABELA Nï¿½O EXISTE: ");
 				return null;	
 			}else{
 				System.out.println("ERRO NA CLASSE:" + this
@@ -109,12 +108,12 @@ public class FuncionarioDAO {
 		} catch (SQLException erro) {
 			if(erro.getErrorCode() == 1049){
 				System.out.println("ERRO: " + erro +
-								   "\nBANCO NÃO CADASTRADO: ");
+								   "\nBANCO Nï¿½O CADASTRADO: ");
 				return -1;	
 			}else if(erro.getErrorCode() == 1146){
 				
 				System.out.println("ERRO: " + erro +
-								   "\nTABELA NÃO EXISTE: ");
+								   "\nTABELA Nï¿½O EXISTE: ");
 				return -1;	
 			}else{
 				System.out.println("ERRO NA CLASSE:" + this
@@ -153,7 +152,7 @@ public class FuncionarioDAO {
 				//Error: 1049 SQLSTATE: 42000 (ER_BAD_DB_ERROR) 
 				//Message: Banco de dados '%s' desconhecido 
 				System.out.println("ERRO: " + erro +
-								   "\nBANCO NÃO CADASTRADO: ");
+								   "\nBANCO Nï¿½O CADASTRADO: ");
 				return null;
 			}else{
 				System.out.println("SQLCODE : " + erro.getErrorCode()

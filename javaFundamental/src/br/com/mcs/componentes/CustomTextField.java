@@ -42,6 +42,7 @@ public class CustomTextField extends JTextField implements FocusListener, KeyLis
 		this.setText(this.getText().toUpperCase());
 	}
 
+	@Override
 	public void focusGained(FocusEvent e) {
 		this.setBackground(cores[0]);
 		this.setForeground(cores[1]);
