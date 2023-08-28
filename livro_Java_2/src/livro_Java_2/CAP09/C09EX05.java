@@ -1,13 +1,14 @@
+package livro_Java_2.CAP09;
 import java.io.*;
 
-class C09EX06 {
+class C09EX05 {
 
   public static void main(String args[]) {
 
-    Taluno4 ALUNO = new Taluno4();
+    Taluno3 ALUNO = new Taluno3();
  
     System.out.println();
-    System.out.print("Entre nome .....: ");
+    System.out.print("Entre nome ....: ");
     try {
       BufferedReader br = new BufferedReader(
       new InputStreamReader(System.in));
@@ -16,25 +17,16 @@ class C09EX06 {
       ALUNO.NOME = "";
     }
    
-    System.out.print("Entre a nota 1 .: ");
+    System.out.print("Entre media ...: ");
     try {
       BufferedReader br = new BufferedReader(
       new InputStreamReader(System.in));
-      ALUNO.N1 = Float.parseFloat(br.readLine()); } 
+      ALUNO.MEDIA = Float.parseFloat(br.readLine()); } 
     catch (Exception e) {
-      ALUNO.N1 = 0;
+      ALUNO.MEDIA = 0;
     }
 
-    System.out.print("Entre a nota 2 .: ");
-    try {
-      BufferedReader br = new BufferedReader(
-      new InputStreamReader(System.in));
-      ALUNO.N2 = Float.parseFloat(br.readLine()); } 
-    catch (Exception e) {
-      ALUNO.N2 = 0;
-    }
-
-    System.out.print("Entre a sala ...: ");
+    System.out.print("Entre a sala ..: ");
     try {
       BufferedReader br = new BufferedReader(
       new InputStreamReader(System.in));
@@ -45,13 +37,12 @@ class C09EX06 {
 
     System.out.println();
     System.out.println("Nome ........: " + ALUNO.NOME);
-    System.out.println("Media .......: " +
-    ALUNO.CalcMedia(ALUNO.N1,ALUNO.N2));
+    System.out.println("Media .......: " + ALUNO.MEDIA);
     System.out.println("Sala ........: " + ALUNO.SALA);
     System.out.println();
     System.out.print("Situacao ....: ");
 
-    if (Taluno2.CondAluno(ALUNO.CalcMedia(ALUNO.N1,ALUNO.N2), 5.0))
+    if (Taluno2.CondAluno(ALUNO.MEDIA, 5.0))
       System.out.println("Aprovado");
     else     
       System.out.println("Reprovado");

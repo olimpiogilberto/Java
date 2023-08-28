@@ -1,13 +1,10 @@
+package livro_Java_2.CAP09;
+
 import java.io.*;
 
-class C09EX01 {
+class C09EX02 {
 
   public static void main(String args[]) {
-
-    final class Taluno {
-      String NOME;
-      float MEDIA;
-    }
 
     Taluno ALUNO = new Taluno();
  

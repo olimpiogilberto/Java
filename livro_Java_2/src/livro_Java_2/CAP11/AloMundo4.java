@@ -1,10 +1,12 @@
+package livro_Java_2.CAP11;
+
 import javax.swing.*;
 
 public class AloMundo4 {
   public static void main(String args[]) {
 
-    JFrame TELA = new JFrame("Alô, Mundo");
-    JLabel TEXTO = new JLabel("Estudo de Programação com Java");
+    JFrame TELA = new JFrame("Alï¿½, Mundo");
+    JLabel TEXTO = new JLabel("Estudo de Programaï¿½ï¿½o com Java");
 
     TELA.setLayout(null);
     TELA.getContentPane().add(TEXTO);

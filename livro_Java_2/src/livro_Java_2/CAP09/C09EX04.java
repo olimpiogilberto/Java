@@ -1,15 +1,11 @@
+package livro_Java_2.CAP09;
 import java.io.*;
 
-class C09EX01 {
+class C09EX04 {
 
   public static void main(String args[]) {
 
-    final class Taluno {
-      String NOME;
-      float MEDIA;
-    }
-
-    Taluno ALUNO = new Taluno();
+    Taluno2 ALUNO = new Taluno2();
  
     System.out.println();
 
@@ -34,6 +30,13 @@ class C09EX01 {
      System.out.println();
      System.out.println("Nome ........: " + ALUNO.NOME);
      System.out.println("Media .......: " + ALUNO.MEDIA);
+     System.out.println();
+     System.out.print("Situacao ....: ");
+
+     if (Taluno2.CondAluno(ALUNO.MEDIA, 5.0))
+       System.out.println("Aprovado");
+     else     
+       System.out.println("Reprovado");
      System.out.println();
 
   }

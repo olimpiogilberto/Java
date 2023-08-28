@@ -1,10 +1,11 @@
+package livro_Java_2.CAP09;
 import java.io.*;
 
-class C09EX08 {
+class C09EX07 {
 
   public static void main(String args[]) {
 
-    Taluno6 ALUNO = new Taluno6();
+    Taluno5 ALUNO = new Taluno5();
  
     System.out.println();
     System.out.print("Entre nome .....: ");
