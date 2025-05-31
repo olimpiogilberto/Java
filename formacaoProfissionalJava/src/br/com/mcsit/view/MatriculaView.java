@@ -177,7 +177,7 @@ public class MatriculaView implements ActionListener, ItemListener{
 						
 					}
 					else{
-						JOptionPane.showMessageDialog(janela, "Não Matriculado");  
+						JOptionPane.showMessageDialog(janela, "Nï¿½o Matriculado");  
 						}
 					}
 				  	

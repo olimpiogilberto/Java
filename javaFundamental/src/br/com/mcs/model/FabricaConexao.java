@@ -9,7 +9,7 @@ public class FabricaConexao {
 		try{
 			
 			String driver = "com.mysql.jdbc.Driver";
-			String url = "jdbc:mysql://localhost:3306/formacao_java";
+			String url = "jdbc:mysql://localhost:3306/cadastro_formacao_java";
 
 			//carrega o driver na memoria
 			Class.forName(driver);

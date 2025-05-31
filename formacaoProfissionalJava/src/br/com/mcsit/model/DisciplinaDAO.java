@@ -20,7 +20,7 @@ public class DisciplinaDAO {
 	public List<Disciplina> listAll(){
 		
 		try{
-			String sql = "SELECT * FROM TBDisciplina ORDER BY idTBDisciplina";
+			String sql = "SELECT * FROM TBDisciplinas ORDER BY codigo";
 			
 			PreparedStatement stm = conexao.prepareStatement(sql);
 			ResultSet resultado = stm.executeQuery();
@@ -28,14 +28,14 @@ public class DisciplinaDAO {
 			
 		while (resultado.next()){
 			Disciplina d = new Disciplina();
-			d.setCodigo(resultado.getInt("idTBDisciplina"));
+			d.setCodigo(resultado.getInt("codigo"));
 			d.setNome(resultado.getString("NOME"));
 			lista.add(d);
 		}
 		return lista;
 		
 		}catch (SQLException erro){
-			System.out.println("Erro método listAll: " + erro);
+			System.out.println("Erro mÃ©todo listAll: " + erro);
 			return null;
 		}
 		
@@ -44,7 +44,7 @@ public class DisciplinaDAO {
 public List<Disciplina> listAll(int curso){
 		
 		try{
-			String sql = "SELECT * FROM TBDisciplina WHERE idTBDisciplina = ? ORDER BY idTBDisciplina ";
+			String sql = "SELECT * FROM TBDisciplinas WHERE codigo = ? ORDER BY codigo ";
 			
 			PreparedStatement stm = conexao.prepareStatement(sql);
 			stm.setInt(1, curso);
@@ -54,7 +54,7 @@ public List<Disciplina> listAll(int curso){
 			
 		while (resultado.next()){
 			Disciplina d = new Disciplina();
-			d.setCodigo(resultado.getInt("idTBDisciplina"));
+			d.setCodigo(resultado.getInt("codigo"));
 			d.setNome(resultado.getString("NOME"));
 			d.setDescricao(resultado.getString("DESCRICAO"));
 			lista.add(d);
@@ -62,7 +62,7 @@ public List<Disciplina> listAll(int curso){
 		return lista;
 		
 		}catch (SQLException erro){
-			System.out.println("Erro método listByCourse: " + erro);
+			System.out.println("Erro mÃ©todo listByCourse: " + erro);
 			return null;
 		}
 		
@@ -70,7 +70,7 @@ public List<Disciplina> listAll(int curso){
 //---------CADASTRAR DISCIPLINAS------------------
 public boolean cadastrar(Disciplina dados) {
 	try{
-		String sql = "INSERT TBDisciplina (idTBDisciplina, nome, descricao)" +
+		String sql = "INSERT TBDisciplinas (codigo, nome, descricao)" +
 				"VALUES (?, ?, ?)";
 				
 		PreparedStatement stm = conexao.prepareStatement(sql);
@@ -91,11 +91,11 @@ public boolean cadastrar(Disciplina dados) {
 		return false;
 	}
 }
-//---------ALTERAÇÃO
+//---------ALTERAï¿½ï¿½O
 public boolean alterar(Disciplina dados){
 try{
-	String sql = "UPDATE TBDisciplina SET Nome = ?, Descricao = ?" +
-			"WHERE idTBDisciplina = ?";
+	String sql = "UPDATE TBDisciplinas SET Nome = ?, Descricao = ?" +
+			"WHERE codigo = ?";
 			
 	PreparedStatement stm = conexao.prepareStatement(sql);
 	stm.setInt(3, dados.getCodigo());
@@ -120,7 +120,7 @@ catch(SQLException erro){
 public boolean excluir(Disciplina dados){
 	
 	try{
-		String sql = "DELETE FROM TBDisciplina WHERE idTBDisciplina = ?";
+		String sql = "DELETE FROM TBDisciplinas WHERE codigo = ?";
 				
 		PreparedStatement stm = conexao.prepareStatement(sql);
 		stm.setInt(1, dados.getCodigo());
@@ -144,14 +144,14 @@ public boolean excluir(Disciplina dados){
 //---------BUSCAR MAIOR DISCIPLINAS------------------
  public int consultarMax() {
 	try{
-		String sql = "SELECT MAX(idTBDisciplina) as idTBDisciplina FROM TBDisciplina";
+		String sql = "SELECT MAX(codigo) FROM TBDisciplinas";
 			
 		PreparedStatement stm = conexao.prepareStatement(sql);
 							
 		ResultSet resultado = stm.executeQuery();
 		
 		if(resultado.next()){
-			return resultado.getInt("idTBDisciplina");
+			return resultado.getInt("codigo");
 						
 		}else{
 			return 0;
@@ -173,7 +173,7 @@ public boolean excluir(Disciplina dados){
  public Disciplina consultar(Disciplina dados) {
 	
 	try{
-		String sql = "SELECT * FROM TBDisciplina WHERE idTBDisciplina = ? ";
+		String sql = "SELECT * FROM TBDisciplinas WHERE codigo = ? ";
 		
 		PreparedStatement stm = conexao.prepareStatement(sql);
 		stm.setLong(1, dados.getCodigo());

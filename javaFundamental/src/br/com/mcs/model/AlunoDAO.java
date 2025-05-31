@@ -16,7 +16,7 @@ public class AlunoDAO {
 	public Aluno buscaPorRa(Aluno dados){
 	
 	try{
-		String sql = "SELECT nome FROM TB_A2luno WHERE RA = ?";
+		String sql = "SELECT nome FROM TBAluno WHERE RA = ?";
 				
 		PreparedStatement stm = conexao.prepareStatement(sql);
 		stm.setInt(1, dados.getRa());
@@ -38,10 +38,10 @@ public class AlunoDAO {
 	}
 	catch(SQLException erro){
 		System.out.println("Erro na classe:" + this+
-							"\nMétodo buscaPorRa" +
+							"\nMï¿½todo buscaPorRa" +
 							"\nErro: " + erro +
 							"\nSQLCODE: " + erro.getErrorCode());
-		//		" método buscaPorRa: " + this);
+		//		" mï¿½todo buscaPorRa: " + this);
 		return null; 
 		
 	}

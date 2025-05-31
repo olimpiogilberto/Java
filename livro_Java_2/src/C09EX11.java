@@ -1,4 +1,4 @@
-package livro_Java_2.CAP09;
+package livro_Java_2.*;
 import java.io.*;
 
 
